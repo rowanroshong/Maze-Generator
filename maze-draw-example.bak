@@ -47,7 +47,4 @@
 ;(draw_maze full-maze maze-img)
 ;full-maze
 ;(show_image maze-img)
-;(write_maze_file "maze2.txt" (list '(40 30) full-maze))
-(draw_maze_file "maze1.txt")
-(draw_maze_file "maze2.txt")
 (draw_maze_file "maze3.txt")
