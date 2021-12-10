@@ -14,6 +14,7 @@ public class Square {
         setIndex(index);
     }
 
+    // Set's the sides of the squares based on its new edges
     public void setSides(Square s2){
         int diff = s2.getIndex() - this.getIndex();
 

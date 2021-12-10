@@ -9,10 +9,12 @@ public class Path {
         setEdges(edges);
     }
 
+    // Adds edge to path
     public void addEdge(Edge e){
         getEdges().add(e);
     }
 
+    // Combines two paths that need to be combined
     public void combinePaths(Path p2){
         int size = p2.getEdges().size();
 

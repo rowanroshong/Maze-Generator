@@ -1,6 +1,6 @@
 public class Edge {
-    private Square s1;
-    private Square s2;
+    private Square s1; // Square 1 along edge
+    private Square s2; // Square 2 along edge
 
     public Edge(Square s1, Square s2){
         setS1(s1);

@@ -42,6 +42,7 @@ public class Maze {
         return squares;
     }
 
+    // Saves our maze in a text file with desired format
     public String mazeToTextFile(){
         String output = "";
         int numOfSquares = squares.size();
