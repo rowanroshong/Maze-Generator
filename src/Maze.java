@@ -104,6 +104,68 @@ public class Maze {
         return edges;
     }
 
+    // Checks an edge from the maze to see if it has been used yet and if it's valid
+    public void checkEdge(){
+        List<Edge> edges = this.getEdges();
+        int index = getRandomIndex(edges.size());
+        Edge currentEdge = edges.get(index);
+
+        Square s1 = currentEdge.getS1();
+        Square s2 = currentEdge.getS2();
+        Path p1 = s1.getPath();
+        Path p2 = s2.getPath();
+
+        // If no paths exist yet, make a new one and connect them
+        if(p1 == null && p2 == null){
+            Path newPath = new Path();
+            newPath.addEdge(currentEdge);
+            s1.setPath(newPath);
+            s2.setPath(newPath);
+
+            // Set the sides of the affected squares
+            s1.setSides(s2);
+        }
+
+        // If Square 1 is on a path and Square 2 isn't, add Square 2 to Square 1's path
+        if (p1 != null && p2 == null){
+            p1.addEdge(currentEdge);
+            s2.setPath(p1);
+
+            // Set the sides of the affected squares
+            s1.setSides(s2);
+        }
+
+        // If Square 2 is on a path and Square 1 isn't, add Square 1 to Square 2's path
+        if (p1 == null && p2 != null){
+            p2.addEdge(currentEdge);
+            s1.setPath(p2);
+
+            // Set the sides of the affected squares
+            s1.setSides(s2);
+        }
+
+        // If both squares are on their own paths, there are two outcomes
+        // First, check if they are on the same path. If so, do nothing and do not add edge to path
+        if (p1 != null && p2 != null){
+            if(p1.equals(p2)){
+                // nothing
+            } else {
+                // If they aren't on the same path, combine them.
+                p1.combinePaths(p2);
+
+                // Set the sides of the affected squares
+                s1.setSides(s2);
+            }
+        }
+        // remove the edge so it will not be found again
+        edges.remove(index);
+    }
+
+    public int getRandomIndex(int size) {
+        int index = (int)(Math.random() * size);
+        return index;
+    }
+
     // To string that displays text representation of Maze
     public String toString(){
         String textMaze = "";

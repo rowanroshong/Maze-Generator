@@ -14,6 +14,18 @@ public class Square {
         setIndex(index);
     }
 
+    public void setSides(Square s2){
+        int diff = s2.getIndex() - this.getIndex();
+
+        if(diff == 1){
+            this.setE(false);
+            s2.setW(false);
+        }else{
+            this.setS(false);
+            s2.setN(false);
+        }
+    }
+
     // returns a letter that corresponds to the
     public String toString(){
         if(!n){
